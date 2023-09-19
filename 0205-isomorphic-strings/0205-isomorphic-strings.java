@@ -2,10 +2,10 @@ class Solution {
     public boolean isIsomorphic(String s, String t) {
         int a=s.length();
         int b=t.length();
-
         if(a!=b)
             return false;
-        HashMap<Character,Character> hm = new HashMap<>();
+        HashMap<Character,Character>hm =  new HashMap<>();
+        
         for(int i=0;i<a;i++)
         {
             if(hm.containsKey(s.charAt(i)))
@@ -17,17 +17,13 @@ class Solution {
             }
             else
             {
-                // Checking that same char cant be mapped to two char.
                 if(hm.containsValue(t.charAt(i)))
                 {
                     return false;
                 }
                 hm.put(s.charAt(i),t.charAt(i));
-
             }
-
-        }  
-        return true;  
-        
-    }
+        }
+        return true;
+}
 }
