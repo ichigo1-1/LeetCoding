@@ -17,6 +17,7 @@ class Solution {
             }
             else
             {
+                // Checking that same char cant be mapped to two char.
                 if(hm.containsValue(t.charAt(i)))
                 {
                     return false;
