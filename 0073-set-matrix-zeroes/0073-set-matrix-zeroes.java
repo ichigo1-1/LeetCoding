@@ -1,12 +1,12 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
-        int row=matrix.length;
-        int col=matrix[0].length;
+        int row = matrix.length;
+        int col = matrix[0].length;
         
-       ArrayList<Integer>x = new ArrayList<>();
-        ArrayList<Integer>y = new ArrayList<>();
+        ArrayList<Integer>x=new ArrayList<>();
+         
+        ArrayList<Integer>y=new ArrayList<>();
         
-        //IDHAR ROW AND COLUMN KA INDEX STORE KAR RAHA H JAHA 0 H
         for(int i=0;i<row;i++)
         {
             for(int j=0;j<col;j++)
@@ -28,14 +28,20 @@ class Solution {
             }
         }
         
-        for(int i=0;i<y.size();i++)
+          for(int i=0;i<y.size();i++)
         {
-            int index2=y.get(i);
+            int index=y.get(i);
             for(int j=0;j<row;j++)
             {
-                matrix[j][index2]=0;
+                matrix[j][index]=0;
             }
         }
         
+    }
 }
-}
+
+
+
+
+ 
+        
