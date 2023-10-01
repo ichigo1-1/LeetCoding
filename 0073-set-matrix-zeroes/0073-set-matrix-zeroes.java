@@ -6,6 +6,7 @@ class Solution {
        ArrayList<Integer>x = new ArrayList<>();
         ArrayList<Integer>y = new ArrayList<>();
         
+        //IDHAR ROW AND COLUMN KA INDEX STORE KAR RAHA H JAHA 0 H
         for(int i=0;i<row;i++)
         {
             for(int j=0;j<col;j++)
