@@ -1,6 +1,7 @@
 class Solution {
     public int searchInsert(int[] arr, int target) {
-   int start=0;
+        
+        int start=0;
         int end=arr.length-1;
         int ans=arr.length;
         while(start<=end)
