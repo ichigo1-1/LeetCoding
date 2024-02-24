@@ -46,7 +46,7 @@ class Solution {
         Stack<Integer> st = new Stack<>();
         st.push(arr.length - 1);
         nge[arr.length - 1] = arr.length;
-        for (int i = arr.length - 2; i >= 0; --i) {
+        for (int i = arr.length - 2; i >= 0; i--) {
             while (!st.isEmpty() && arr[i] >= arr[st.peek()]) 
                 st.pop();
             if (st.isEmpty()) nge[i] = arr.length; 
