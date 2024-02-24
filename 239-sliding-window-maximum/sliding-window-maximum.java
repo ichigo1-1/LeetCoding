@@ -25,22 +25,22 @@ class Solution {
 
         //now run loop and see
         int ind=0;
-        int j=0;
         for(int i=0;i<=nums.length-k;++i)
         {
             // int j=i;//to jump to nge
-             if(j < i){
-        j = i;
-      }
+        int j=i;
             while(nge[j]<i+k)
             {
                 j=nge[j];
             }
+        
             res[ind++]=nums[j];
-
-
         }
-        return res;
+
+return res;
+        }
+        
+}
 
         // int[] nge = new int[arr.length];
         // Stack<Integer> st = new Stack<>();
@@ -64,5 +64,5 @@ class Solution {
         
         // return ans;
         
-    }
-}
+//     }
+// }
