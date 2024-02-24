@@ -55,9 +55,9 @@ class Solution {
         }
 
         int[] ans = new int[arr.length - k + 1];
-        int j = 0; // To travel in nge
+         // To travel in nge
         for (int i = 0; i <= arr.length - k; ++i) {
-            if (j < i) j = i;
+            int j = i;
             while (nge[j] < i + k) j = nge[j];
             ans[i] = arr[j];
         }
