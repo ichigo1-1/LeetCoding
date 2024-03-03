@@ -84,7 +84,7 @@ class Solution {
         while (!q.isEmpty()) {
             int p = q.peek().first;
             int s = q.peek().second;
-            q.poll();
+            q.poll();//removes front element
 
             for (int i = 0; i < 4; i++) {
                 int nr = p + drow[i];
