@@ -20,19 +20,29 @@ class Solution {
 
         // }
         // return ans;
-        HashMap<Integer,Integer>hm=new HashMap<>();
-        for(int i=0;i<nums.length;i++)
+
+        // HashMap<Integer,Integer>hm=new HashMap<>();
+        // for(int i=0;i<nums.length;i++)
+        // {
+        //     hm.put(nums[i],hm.getOrDefault(nums[i],0)+1);
+        // }
+        // for(int j:hm.keySet())
+        // {
+        //     if(hm.get(j)!=3)
+        //     {
+        //         return j;
+        //     }
+        // }
+        // return -1;
+        Arrays.sort(nums);
+        for(int i=1;i<nums.length;i=i+3)
         {
-            hm.put(nums[i],hm.getOrDefault(nums[i],0)+1);
-        }
-        for(int j:hm.keySet())
-        {
-            if(hm.get(j)!=3)
+            if(nums[i]!=nums[i-1])
             {
-                return j;
+                return nums[i-1];
             }
         }
-        return -1;
+        return nums[nums.length-1];
         
     }
 }
