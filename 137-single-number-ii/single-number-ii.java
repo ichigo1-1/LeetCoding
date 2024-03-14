@@ -34,15 +34,34 @@ class Solution {
         //     }
         // }
         // return -1;
-        Arrays.sort(nums);
-        for(int i=1;i<nums.length;i=i+3)
+
+        // Arrays.sort(nums);
+        // for(int i=1;i<nums.length;i=i+3)
+        // {
+        //     if(nums[i]!=nums[i-1])
+        //     {
+        //         return nums[i-1];
+        //     }
+        // }
+        // return nums[nums.length-1];
+        int ans=0;
+        for(int i=0;i<32;i++)
         {
-            if(nums[i]!=nums[i-1])
+            int count=0;
+            for(int numbers=0;numbers<nums.length;numbers++)
             {
-                return nums[i-1];
+                //count karo set bits ka
+                if((nums[numbers]&(1<<i))!=0)
+                {
+                    count++;
+                }
             }
+            if(count%3==1)
+            {
+                ans=ans | (1<<i);
+            }
+
         }
-        return nums[nums.length-1];
-        
+        return ans;
     }
 }
