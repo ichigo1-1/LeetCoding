@@ -53,10 +53,16 @@ class Solution {
         dd = Math.abs(dd);dv = Math.abs(dv);
         while(dd >= dv){
             int shift = 0;
-            while(dd >= (dv<<shift))shift++;
-            quotient += (long)1l<<(shift-1);
-            // System.out.println(quotient+"-"+shift);
-            dd -= dv<<(shift-1);
+            // while(dd >= (dv<<shift))shift++;
+            // quotient += (long)1l<<(shift-1);
+        
+            // dd -= dv<<(shift-1);
+            while(dd>=(dv<<shift))
+            {
+                shift++;
+            }
+            quotient+=(long)1l<<(shift-1);
+            dd-=(dv<<shift-1);
         }
         if(sign == 1){
             if(quotient > max)return max;
