@@ -25,7 +25,6 @@ class Solution {
         // word.matches("[a-z]+") ||             // All small letters
         // word.matches("[A-Z]{1}[a-z]+");  // First capital, all small
         
-        
 
 
         
