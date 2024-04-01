@@ -16,27 +16,17 @@ class Solution {
     //     }
     //     return result;
 
-
-
-
-
-
-
-
-HashMap<Integer,Integer>hm=new HashMap<>();
-int[]res=new int[2];
-for(int i=0;i<nums.length;i++)
-{
-    if(hm.containsKey(target-nums[i]))
+    for(int i=0;i<nums.length;i++)
     {
-        res[0]=hm.get(target-nums[i]);
-        res[1]=i;
+        for(int j=i+1;j<nums.length;j++)
+        {
+            if(nums[i]+nums[j]==target)
+            {
+                return new int[]{i,j};
+            }
+        }
     }
-    else{
-        hm.put(nums[i],i);
-    }
-}
-return res;
+    return new int[]{};
         
     }
 }
