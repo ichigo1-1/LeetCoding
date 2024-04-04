@@ -2,8 +2,8 @@ class Solution {
 
     // R-1 C-1 FORMULA TO CALCULATE ELEMENT AT R ROW C COLUMN
     public int ncr(int n, int r) {
-        if (r == 0 || r == n)
-            return 1;
+        // if (r == 0 || r == n)
+        //     return 1;
         
         int res = 1;
         for (int i = 0; i < r; i++) {
