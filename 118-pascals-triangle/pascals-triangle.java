@@ -25,20 +25,31 @@ class Solution {
         //     ans.add(new ArrayList<>(temp));
         // }
         // return ans;
-       List<List<Integer>> answer = new ArrayList<>();
-for (int i = 0; i < numRows; i++) {
-    List<Integer> row = new ArrayList<>();
-    for (int j = 0; j <= i; j++) {
-        if (j == 0 || j == i) {
-            row.add(1);
-        } else {
-            int val = answer.get(i - 1).get(j - 1) + answer.get(i - 1).get(j);
-            row.add(val);
-        }
-    }
-    answer.add(row);
-}
-return answer;
+        List<List<Integer>> pascalsTriangle = new ArrayList<>();
 
+for (int n = 0; n < numRows; n++) {
+    List<Integer> row = new ArrayList<>();
+    long ans = 1;
+    
+    // Printing the first element of the row
+    row.add((int) ans);
+
+    // Calculate and store the rest of the elements in the row
+    for (int i = 1; i <= n; i++) {
+        ans = ans * (n - i + 1) / i;
+        row.add((int) ans);
+    }
+    
+    // Add the current row to the triangle
+    pascalsTriangle.add(row);
+}
+
+return pascalsTriangle;
+
+
+
+
+
+        
     }
 }
