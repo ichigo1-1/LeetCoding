@@ -18,6 +18,7 @@ public class Solution {
         {
             return false;
         }
+        //slight modificatuion to the algo
         while(fast.next!=null && fast.next.next!=null) 
         {
             
