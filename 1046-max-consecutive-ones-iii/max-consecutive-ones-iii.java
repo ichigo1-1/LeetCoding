@@ -22,7 +22,7 @@ class Solution {
         // }
         // return len;
 
-        //O(N)  SLIDING WINDOW
+        //O(2 N)  SLIDING WINDOW
         int l=0;
         int r=0;
         int max=0;
@@ -34,7 +34,10 @@ class Solution {
                 zeroes++;
             }
             //if greater than shrink until the window is perfect and fitting the cond.
-            while(zeroes>k)
+            //changing this while to if will bring the solutioon to o(n) as were not allowing if cur len==max len then no need to move further just move by ne step
+            
+            //WHILE
+            if(zeroes>k)
             {
                 if(nums[l]==0)
                 {
