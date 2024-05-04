@@ -35,7 +35,7 @@ class Solution {
     while (r < n) {
         hm.put(fruits[r], hm.getOrDefault(fruits[r], 0) + 1);
         if (hm.size() > 2) {
-            while (hm.size() > 2) {
+            if (hm.size() > 2) {
                 hm.put(fruits[l], hm.get(fruits[l]) - 1);
                 if (hm.get(fruits[l]) == 0) {
                     hm.remove(fruits[l]);
