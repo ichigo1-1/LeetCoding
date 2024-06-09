@@ -1,7 +1,6 @@
 class Solution {
      private int findBest(int targetIdx, int k, int[] nums, long[] prefixSum) {
         int target = nums[targetIdx];
-        
         int i = 0;
         int j = targetIdx;
         int result = targetIdx;
@@ -18,7 +17,7 @@ class Solution {
             if (ops > k) {
                 i = mid + 1;
             } else {
-                result = mid;
+                result = mid;//storing the best mid here
                 j = mid - 1;
             }
         }
