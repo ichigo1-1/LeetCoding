@@ -1,21 +1,21 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
 
-        HashSet<Character> set = new HashSet<>();
-        int maxlen = 0;
-        int i = 0; // Pointer for the start of the substring
-        int j = 0; // Pointer for the end of the substring
-        while (j < s.length()) {
-            if (!set.contains(s.charAt(j))) {
-                set.add(s.charAt(j));
-                maxlen = Math.max(maxlen, j - i + 1);
-                j++;
-            } else {
-                set.remove(s.charAt(i));
-                i++;
-            }
-        }
-        return maxlen;
+        // HashSet<Character> set = new HashSet<>();
+        // int maxlen = 0;
+        // int i = 0; // Pointer for the start of the substring
+        // int j = 0; // Pointer for the end of the substring
+        // while (j < s.length()) {
+        //     if (!set.contains(s.charAt(j))) {
+        //         set.add(s.charAt(j));
+        //         maxlen = Math.max(maxlen, j - i + 1);
+        //         j++;
+        //     } else {
+        //         set.remove(s.charAt(i));
+        //         i++;
+        //     }
+        // }
+        // return maxlen;
         
     //     int[] arr = new int[256];
     // int max = 0;
@@ -39,6 +39,30 @@ class Solution {
     //     }
     // }
     // return max;
+
+    HashSet<Character>hm=new HashSet<>();
+    int i=0;
+    int j=0;
+    int max=0;
+    int n=s.length();
+    while(j<n)
+    {
+        if(hm.contains(s.charAt(j)))
+        {
+       
+            //remove i and move i by 1
+            hm.remove(s.charAt(i));
+            i++;
+        }
+        else{
+            hm.add(s.charAt(j));
+            max=Math.max(max,j-i+1);
+            j++;
+        }
+   
+    }
+    return max;
+    
     }
         
     }
