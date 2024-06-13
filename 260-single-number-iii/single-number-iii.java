@@ -24,21 +24,48 @@ class Solution {
     //   res[1]=set2;
     //     return res;
 
-    HashMap<Integer,Integer>hm=new HashMap<>();
-    int[]res=new int[2];
-    for(int it:nums)
+
+
+    // HashMap<Integer,Integer>hm=new HashMap<>();
+    // int[]res=new int[2];
+    // for(int it:nums)
+    // {
+    //     hm.put(it,hm.getOrDefault(it,0)+1);
+    // }
+    // int i=0;
+    // for(int it:hm.keySet())
+    // {
+    //     if(hm.get(it)==1)
+    //     {
+    //         res[i]=it;
+    //         i++;
+    //     }
+    // }
+    // return res;
+    int xor=0;
+    for(int i=0;i<nums.length;i++)
     {
-        hm.put(it,hm.getOrDefault(it,0)+1);
+        xor^=nums[i];
     }
-    int i=0;
-    for(int it:hm.keySet())
+    //this will give a number 
+    //now we need to distinguish between digits based on 1st occurence oof 1
+    int rightmost=(xor&(xor-1))^xor;
+    int firstxor=0;
+    int secondxor=0;
+    //now travserse
+    for(int i=0;i<nums.length;i++)
     {
-        if(hm.get(it)==1)
+        if((nums[i]&rightmost)!=0)
         {
-            res[i]=it;
-            i++;
+            firstxor=firstxor^nums[i];
+        }
+        else{
+            secondxor=secondxor^nums[i];
         }
     }
+    int[]res=new int[2];
+    res[0]=firstxor;
+    res[1]=secondxor;
     return res;
     }
 }
