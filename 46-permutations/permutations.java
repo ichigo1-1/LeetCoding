@@ -2,29 +2,33 @@ class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>>ans=new ArrayList<>();
         List<Integer>ds=new ArrayList<>();
-        boolean freq[]=new boolean[nums.length];
-        backtrack(ans,ds,freq,nums);
-        return ans;        
+        boolean[]freq=new boolean[nums.length];
+        rec(0,ans,ds,freq,nums);
+        return ans;
     }
-    public void backtrack(List<List<Integer>>ans,List<Integer>ds,boolean[]freq,int[]arr)
+    public void rec(int i,List<List<Integer>>ans,List<Integer>ds,boolean[]freq,int[]nums)
     {
-        if(ds.size()==arr.length)
+        //base case
+        if(ds.size()==nums.length)
         {
-            ans.add(new ArrayList<>(ds));//ye isiliye kartai so that when we make changse to ds ans is not affected.
-            //if we do ans.add(ds);
-            //itll create a shallow copy sp ans will be affcted whenever ds changes;
+            ans.add(new ArrayList<>(ds));
             return;
         }
-        for(int i=0;i<arr.length;i++)
+        for(int ind=0;ind<nums.length;ind++)
         {
-            if(!freq[i])
-            {
-                ds.add(arr[i]);
-                freq[i]=true;
-                backtrack(ans,ds,freq,arr);
-                ds.remove(ds.size()-1);
-                freq[i]=false;
-            }
+                if(freq[ind]==false)
+                {
+                    freq[ind]=true;
+                    //add
+                    ds.add(nums[ind]);
+                    //take
+                    rec(ind,ans,ds,freq,nums);
+                    //remove
+                    ds.remove(ds.size()-1);
+                    //mark as unvisitede
+                    freq[ind]=false;
+                }
         }
+    
     }
 }
