@@ -1,45 +1,42 @@
 class Solution {
-    public void dfs(int node,boolean[]vis,ArrayList<ArrayList<Integer>>arr)
+    public void dfs(int i,ArrayList<ArrayList<Integer>>adj,boolean[]vis)
     {
-        vis[node]=true;
-        //visit adj
-        for(int it:arr.get(node))
+        vis[i]=true;
+        for(int it:adj.get(i))
         {
             if(vis[it]==false)
             {
-                dfs(it,vis,arr);
+                dfs(it,adj,vis);
             }
         }
     }
     public int findCircleNum(int[][] isConnected) {
-        int count=0;
-        ArrayList<ArrayList<Integer>>arr=new ArrayList<>();
+        ArrayList<ArrayList<Integer>>adj=new ArrayList<>();
         int n=isConnected.length;
-        for(int i=0;i<n;i++)
+        for(int i=0;i<=n;i++)
         {
-            arr.add(new ArrayList<>());
+            adj.add(new ArrayList<>());
         }
-        
-        //now traverse
+        //now put
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<n;j++)
             {
                 if(isConnected[i][j]==1)
                 {
-                    //add to list
-                    arr.get(i).add(j);
+                    adj.get(i).add(j);
                 }
             }
         }
-        //now traverse using dfs
+        //
         boolean[]vis=new boolean[n];
+        int count=0;
         for(int i=0;i<n;i++)
         {
             if(vis[i]==false)
             {
-                dfs(i,vis,arr);
                 count++;
+                dfs(i,adj,vis);
             }
         }
         return count;
