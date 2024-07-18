@@ -1,194 +1,50 @@
 class Solution {
-    public int precedence(char a)
-    {
-        if(a=='+')
-        {
-            return 1;
-        }
-        else if(a=='-')
-        {
-            return 1;
-        }
-        else if(a=='*')
-        {
-            return 2;
-        }
-        else if(a=='/')
-        {
-            return 2;
-        }
-        return 0;
-    }
-
-    public int operation(int a,int b,char ab)
-    {
-        if(ab=='+')
-        {
-            return a+b;
-        }
-        else if(ab=='-')
-        {
-            return a-b;
-        }
-        else if(ab=='*')
-        {
-            return a*b;
-        }
-        else if(ab=='/')
-        {
-            return a/b;
-        }
-        return 0;
-
-    }
     public int calculate(String s) {
-
-
-        
-
-        Stack<Integer>numbers=new Stack<>();
-        Stack<Character>symbols=new Stack<>();
-
-    
-
-        for(int i=0;i<s.length();i++)
+        Stack<Integer>st=new Stack<>();
+        char sign='+';
+        int n=s.length();
+        for(int i=0;i<n;i++)
         {
             char ch=s.charAt(i);
-
-            if(ch=='(')
+            if(Character.isDigit(s.charAt(i)))
             {
-                symbols.push(ch);
-            }
-            else if(ch==')')
-            {
-                while(symbols.peek()!='(')
+                int val=0;
+                while(i<n && Character.isDigit(s.charAt(i)))
                 {
-                   char optr = symbols.pop();
-
-                   int v1=numbers.pop();
-                   int v2=numbers.pop();
-
-                   int opv=operation(v2,v1,optr);
-                   numbers.push(opv);
-                }
-                //remove the ( bracket
-                symbols.pop();
-            }
-            else if(Character.isDigit(ch))
-            {
-                int num=0;
-                while(i<s.length() && Character.isDigit(s.charAt(i)))
-                {
-                    num=num*10+(s.charAt(i)-'0');
+                    val=val*10+(s.charAt(i)-'0');
                     i++;
                 }
-                //decrement as i++ hone ka bad i ka ek value jada hoga
                 i--;
-                numbers.push(num);
-            }
-            else if(ch=='+' || ch=='-' || ch=='*' || ch=='/')
-            {
-                while(symbols.size()>0 && symbols.peek()!='(' && precedence(ch)<=precedence(symbols.peek()))
+                if(sign=='+')
                 {
-                    //do the same job were doing with )
-                    char optr = symbols.pop();
-
-                   int v1=numbers.pop();
-                   int v2=numbers.pop();
-
-                   int opv=operation(v2,v1,optr);
-                   numbers.push(opv);
-
+                    st.push(val);
                 }
-                //push the symbol
-                symbols.push(ch);
-
+                else if(sign=='-')
+                {
+                    st.push(-val);
+                }
+                else if(sign=='*')
+                {
+                    int a=st.pop();
+                    int ans=a*val;
+                    st.push(ans);
+                }
+                else if(sign=='/'){
+                    int a=st.pop();
+                    int ans=a/val;
+                    st.push(ans);
+                }
+            }
+            else if(ch!=' ')
+            {
+                sign=ch;
             }
         }
-        //might be a case where the symbols are not empty// so we do operation manually until size ==0
-
-       
-        while(symbols.size()>0)
+        int sum=0;
+        while(st.size()>0)
         {
-            char optr = symbols.pop();
-
-                   int v1=numbers.pop();
-                   int v2=numbers.pop();
-
-                   int opv=operation(v2,v1,optr);
-                   numbers.push(opv);
-
+            sum+=st.pop();
         }
-        //numbers ka peek me jo last element bachega wahi ans hai
-        
-
-        return numbers.peek();
-
-
-
-
-    //      Stack<Integer> numbers = new Stack<>();
-    // Stack<Character> symbols = new Stack<>();
-
-    // for (int i = 0; i < s.length(); i++) {
-    //     char ch = s.charAt(i);
-
-    //     if (ch == '(') {
-    //         symbols.push(ch);
-    //     } else if (ch == ')') {
-    //         while (symbols.peek() != '(') {
-    //             char optr = symbols.pop();
-
-    //             int v1 = numbers.pop();
-    //             int v2 = numbers.pop();
-
-    //             int opv = operation(v2, v1, optr);
-    //             numbers.push(opv);
-    //         }
-    //         // Remove the '(' bracket
-    //         symbols.pop();
-    //     } else if (Character.isDigit(ch)) {
-    //         // Handle multi-digit numbers
-    //         int num = 0;
-    //         while (i < s.length() && Character.isDigit(s.charAt(i))) {
-    //             num = num * 10 + (s.charAt(i) - '0');
-    //             i++;
-    //         }
-    //         // Decrease i to account for the extra increment in the loop
-    //         i--;
-    //         numbers.push(num);
-    //     } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
-    //         while (!symbols.isEmpty() && symbols.peek() != '(' && precedence(ch) <= precedence(symbols.peek())) {
-    //             char optr = symbols.pop();
-
-    //             int v1 = numbers.pop();
-    //             int v2 = numbers.pop();
-
-    //             int opv = operation(v2, v1, optr);
-    //             numbers.push(opv);
-    //         }
-    //         // Push the symbol
-    //         symbols.push(ch);
-    //     }
-    // }
-
-    // // Handle the case where the symbols stack is not empty after the loop
-    // while (!symbols.isEmpty()) {
-    //     char optr = symbols.pop();
-    //     int v1 = numbers.pop();
-    //     int v2 = numbers.pop();
-    //     int opv = operation(v2, v1, optr);
-    //     numbers.push(opv);
-    // }
-
-    // // The result will be at the top of the numbers stack
-    // return numbers.peek();
-
-
-
-      
-
-        
-        
+        return sum;
     }
-    }
+}
