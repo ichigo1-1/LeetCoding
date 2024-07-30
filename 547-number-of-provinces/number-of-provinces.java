@@ -12,7 +12,7 @@ class Solution {
     }
     public int findCircleNum(int[][] isConnected) {
         ArrayList<ArrayList<Integer>>adj=new ArrayList<>();
-        int n=isConnected.length;
+        int n=isConnected.length;//this will give the number of nodes V
         for(int i=0;i<=n;i++)
         {
             adj.add(new ArrayList<>());
@@ -29,12 +29,13 @@ class Solution {
             }
         }
         //
-        boolean[]vis=new boolean[n];
+        boolean[]vis=new boolean[n];//exactlty 3
         int count=0;
         for(int i=0;i<n;i++)
         {
             if(vis[i]==false)
             {
+                //what this will do is that it'll mark all the neighboring 1s if 1 1 is found;
                 count++;
                 dfs(i,adj,vis);
             }
@@ -42,3 +43,13 @@ class Solution {
         return count;
     }
 }
+
+
+
+
+
+
+
+
+
+
