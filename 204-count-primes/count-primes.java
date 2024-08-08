@@ -10,9 +10,9 @@ class Solution {
         }
 
         // Apply the Sieve of Eratosthenes
-        for (int i = 2; i * i < n; i++) {
+        for (int i = 2; i< n; i++) {
             if (arr[i] == 1) {
-                for (int j = i * i; j < n; j += i) {
+                for (int j = 2 * i; j < n; j += i) {
                     arr[j] = 0; // Mark multiples of i as non-prime
                 }
             }
