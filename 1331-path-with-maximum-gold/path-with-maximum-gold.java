@@ -18,11 +18,11 @@ class Solution {
         {
             int nrow=i+di[x];
             int ncol=j+dj[x];
-            maxgold=Math.max(maxgold,solve(nrow,ncol,grid));
+            maxgold=Math.max(maxgold,solve(nrow,ncol,grid));//this will give the max of upsum,downsum,leftsum,rightsum
         }
         //bring back the old valuel
         grid[i][j]=ogvalue;
-        return ogvalue+maxgold;
+        return ogvalue+maxgold;//TECH TRAVERSAL
 
     }
     public int getMaximumGold(int[][] grid) {
