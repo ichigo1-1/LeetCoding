@@ -9,69 +9,35 @@
  * }
  */
 class Solution {
-    public ListNode findk(ListNode head,int k)
-    {
-        int count=1;
-        while(head!=null)
-        {
-            if(count==k)
-            {
-                return head;
-            }
-            count++;
-            head=head.next;
-        }
-        return null;
-
-//         k = k-1;
-
-// while(k>0){
-
-// k--;
-
-// head=head.next;
-
-}
-
-
-
-    
     public ListNode rotateRight(ListNode head, int k) {
-
-        if(head==null)
-        {
-            return null;
+        if (head == null || head.next == null || k == 0) {
+            return head;
         }
-            
-        ListNode tail = head;
 
+        // Compute the length of the list
+        ListNode temp = head;
         int length = 1;
-
-        while(tail.next!= null){
-
-        length++;
-
-        tail = tail.next;
-
+        while (temp.next != null) {
+            length++;
+            temp = temp.next;
         }
 
-        if(k%length == 0){
+        // Connect the last node to the head to form a cycle
+        temp.next = head;
 
-        return head;
+        // Calculate the number of rotations needed
+        k = k % length;
+        int stepsToNewHead = length - k;
 
+        // Find the new head and break the cycle
+        temp = head;
+        for (int i = 0; i < stepsToNewHead - 1; i++) {
+            temp = temp.next;
         }
 
-        k = k%length;
-
-        tail.next = head;
-
-        ListNode newLastNode = findk(head , length-k);
-
-        head =newLastNode.next;
-
-        newLastNode.next = null;
+        head = temp.next;
+        temp.next = null;
 
         return head;
-
     }
 }
