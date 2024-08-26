@@ -1,46 +1,22 @@
 class Solution {
-    public int numberOfSubarrays(int[] nums, int goal){
+    public int numberOfSubarrays(int[] nums, int k) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        hm.put(0, 1); // Initializing with sum 0 and count 1
         
-        // int res=0;
-        // for(int i=0;i<nums.length;i++)
-        // {int count=0;
-            
-        //     for(int j=i;j<nums.length;j++)
-        //     {
-        //         if(nums[j]%2==1)
-        //         {
-        //             count++;
-        //         }
-        //         if(count==k)
-        //         {
-        //             res++;
-                    
-        //         }
-        //         else if(count>k){
-        //             break;
-        //         }
-        //     }
-        // }
-        // return res;
-        
+        int count = 0; // This will store the result
+        int sum = 0; // This keeps track of the current sum of odd numbers
 
-        //SAME AS BINARY SUM TREAT ODD AS 1 AND OTEHRS AS 0
-        //SO IT WILL REDUCE THE PROBLEM TO SAME AND IF SUM==K COUNT;
-       HashMap<Integer, Integer> hm = new HashMap<>();
-        hm.put(0, 1);
-        int j = 0;
-        int count = 0;
-        int sum = 0;
+        for (int num : nums) {
+            sum += num % 2; // Increment sum if the number is odd (num % 2 == 1)
 
-        while (j < nums.length) {
-            sum += nums[j] % 2;
-            if (hm.containsKey(sum - goal)) {
-                count += hm.get(sum - goal);
+            if (hm.containsKey(sum - k)) {
+                count += hm.get(sum - k); // Add the number of times (sum - k) has occurred
             }
-            hm.put(sum, hm.getOrDefault(sum, 0) + 1);
-            j++;
-        }
-        return count;
 
+            // Update the hash map with the current sum
+            hm.put(sum, hm.getOrDefault(sum, 0) + 1);
+        }
+
+        return count;
     }
 }
