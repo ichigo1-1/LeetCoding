@@ -7,7 +7,7 @@ class Solution {
         int actual_carry=carry<<1;
         while(carry!=0)
         {
-            carry=sum&actual_carry;
+            carry=sum&actual_carry;   
             sum=sum^actual_carry;
             
             actual_carry=carry<<1;
