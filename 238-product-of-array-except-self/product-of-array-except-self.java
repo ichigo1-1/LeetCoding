@@ -62,27 +62,45 @@ class Solution {
         // return res;
 
         //                  APPROACH 3:- USING PREFIX AND SUFFIX
-        int[]prefix=new int[nums.length];
-        int[]suffix=new int[nums.length];
-        prefix[0]=1;
-        suffix[suffix.length-1]=1;
-        for(int i=1;i<prefix.length;i++)
-        {
-            prefix[i]=prefix[i-1]*nums[i-1];
-        }
-        for(int i=suffix.length-2;i>=0;i--)
-        {
-            suffix[i]=suffix[i+1]*nums[i+1];
-        }
+        // int[]prefix=new int[nums.length];
+        // int[]suffix=new int[nums.length];
+        // prefix[0]=1;
+        // suffix[suffix.length-1]=1;
+        // for(int i=1;i<prefix.length;i++)
+        // {
+        //     prefix[i]=prefix[i-1]*nums[i-1];
+        // }
+        // for(int i=suffix.length-2;i>=0;i--)
+        // {
+        //     suffix[i]=suffix[i+1]*nums[i+1];
+        // }
+        // //now fill the resultant array
+        // int[]res=new int[nums.length];
+        // int ind=0;
 
-        //now fill the resultant array
+        // for(int i=0;i<nums.length;i++)
+        // {
+        //     res[ind++]=prefix[i]*suffix[i];
+        // }
+        // return res;
+
+
+        //                  APPROACH 4 (NOT USING EXTRA SPACE)
+        //HERE WELL STORE THE PREFIX DIRECTLY TO THE RES AND THEN MODIFY IT BY MULTIPLYING WITH RIGHT
+        int right=1;
         int[]res=new int[nums.length];
-        int ind=0;
-
-        for(int i=0;i<nums.length;i++)
+        res[0]=1;
+        for(int i=1;i<nums.length;i++)
         {
-            res[ind++]=prefix[i]*suffix[i];
+            res[i]=res[i-1]*nums[i-1];
+        }
+        //now fill the res with right products
+        for(int i=nums.length-1;i>=0;i--)
+        {
+            res[i]=res[i]*right;
+            right=right*nums[i];
         }
         return res;
+
     }
 }
