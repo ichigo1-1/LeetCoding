@@ -56,37 +56,42 @@
 
 
 class LRUCache {
-    private final int capacity;
-    private final HashMap<Integer, Integer> cache;
-    private final LinkedHashSet<Integer> usage;
+   int n;
+   LinkedHashSet<Integer>ll;
+   HashMap<Integer,Integer>hm;
 
     public LRUCache(int capacity) {
-        this.capacity = capacity;
-        this.cache = new HashMap<>();
-        this.usage = new LinkedHashSet<>();
-    }
+        n=capacity;
+        ll=new LinkedHashSet<>();
+        hm=new HashMap<>();
+    } 
     public int get(int key) {
-        if (!cache.containsKey(key)) {
+        if(!hm.containsKey(key))
+        {
             return -1;
         }
-        // Move the accessed key to the end to show that it was recently used
-        usage.remove(key);
-        usage.add(key);
-        return cache.get(key);
+        //move to front to mark as recently used
+        ll.remove(key);
+        ll.add(key);
+        return hm.get(key);
     }
+    
     public void put(int key, int value) {
-        if (cache.containsKey(key)) {
-            // Remove the old key to update its position in usage
-            usage.remove(key);
-        } else if (cache.size() >= capacity) {
-            int lruKey = usage.iterator().next();
-            usage.remove(lruKey);
-            cache.remove(lruKey);
+        if(hm.containsKey(key))
+        {
+            ll.remove(key);
         }
-        cache.put(key, value);
-        usage.add(key);
+        else if(hm.size()>=n)
+        {
+            int lru=ll.iterator().next();
+            ll.remove(lru);
+            hm.remove(lru);
+        }
+        hm.put(key,value);
+        ll.add(key);
+        }
     }
-}
+    
 
 
 /**
