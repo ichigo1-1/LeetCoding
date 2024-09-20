@@ -7,6 +7,7 @@ class Solution {
         int actual_carry=carry<<1;
         while(carry!=0)
         {
+            //do carry first as if sum is done first itll be updated and previous value will be gone
             carry=sum&actual_carry;   
             sum=sum^actual_carry;
             
