@@ -1,5 +1,5 @@
 class Solution {
-    int[]dp=new int[1001];
+     int dp[] = new int[1001];
      public int solve(int i, int n, HashSet<String> hs, String s) {
         // base case
         if (i >= n) {
