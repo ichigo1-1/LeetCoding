@@ -3,7 +3,7 @@ class Solution {
         HashSet<Integer>hm=new HashSet<>();
         for(int it:arr1)
         {
-            while(it>0)
+            while(!hm.contains(it) && it>0)
             {
                 hm.add(it);
                 it=it/10;
