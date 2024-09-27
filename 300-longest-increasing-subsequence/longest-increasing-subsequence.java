@@ -1,34 +1,36 @@
 class Solution {
-    public int lengthOfLIS(int[] nums) {
-        if (nums == null || nums.length == 0) {
+    int[][]dp=new int[2501][2501];
+    public int solve(int i,int p,int n,int[]arr)
+    {
+        if(p!=-1 && dp[i][p]!=-1)
+        {
+            return dp[i][p];
+        }
+        //base case 
+        if(i>=n)
+        {
             return 0;
         }
-
-        ArrayList<Integer> res = new ArrayList<>();
-        res.add(nums[0]);
-
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] > res.get(res.size()-1)) {
-                res.add(nums[i]);
-            } else {
-                int ind = lowerbound(res, nums[i]);
-                res.set(ind, nums[i]);
-            }
+        //take condn
+        int take=0;
+        if(p==-1 || arr[p]<arr[i])
+        {
+            take=1+solve(i+1,i,n,arr);
         }
-        return res.size();
+        //skip
+        int skip=solve(i+1,p,n,arr);
+        if(p!=-1)
+        {
+            dp[i][p]=Math.max(take,skip);
+        }
+        return Math.max(take,skip);
     }
-
-    public int lowerbound(ArrayList<Integer> res, int target) {
-        int low = 0;
-        int high = res.size() - 1;
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            if (res.get(mid) >= target) {
-                high = mid - 1;
-            } else {
-                low = mid + 1;
-            }
+    public int lengthOfLIS(int[] nums) {
+        for(int[]row:dp)
+        {
+            Arrays.fill(row,-1);
         }
-        return low;
+        int n=nums.length;
+        return solve(0,-1,n,nums);
     }
 }
