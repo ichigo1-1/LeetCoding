@@ -1,5 +1,5 @@
 class Solution {
-    int[][]dp=new int[2501][2501];
+    int[][]dp;;
     public int solve(int i,int p,int n,int[]arr)
     {
         if(p!=-1 && dp[i][p]!=-1)
@@ -26,11 +26,13 @@ class Solution {
         return Math.max(take,skip);
     }
     public int lengthOfLIS(int[] nums) {
+        int n=nums.length;
+        dp=new int[n+1][n+1];
         for(int[]row:dp)
         {
             Arrays.fill(row,-1);
         }
-        int n=nums.length;
+        
         return solve(0,-1,n,nums);
     }
 }
