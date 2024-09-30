@@ -1,10 +1,10 @@
 class CustomStack {
     int[]arr;
-    int tos;
-
+    int size;
+    int tos=-1;
     public CustomStack(int maxSize) {
-        arr=new int[maxSize];
-        tos=-1;
+        size=maxSize;
+        arr=new int[size];
     }
     
     public void push(int x) {
@@ -12,7 +12,6 @@ class CustomStack {
         {
             arr[++tos]=x;
         }
-        
     }
     
     public int pop() {
@@ -21,16 +20,16 @@ class CustomStack {
             int val=arr[tos];
             tos--;
             return val;
-            
         }
         return -1;
-        
     }
     
     public void increment(int k, int val) {
-
-        int count = k > arr.length? arr.length : k;//idhar count karrai ki kitna el increase karnai
-        while(count-- > 0) arr[count] += val;
+        int count = k>arr.length?arr.length:k;
+        while(count-->0)
+        {
+            arr[count]+=val;
+        }
     }
 }
 
