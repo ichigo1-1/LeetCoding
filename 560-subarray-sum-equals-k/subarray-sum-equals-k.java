@@ -18,27 +18,21 @@ class Solution {
         // return count;
         
         //OPTIMIZED SOLUTION
-    int j = 0;
-    int n = a.length;
-    int count = 0;
-    int sum = 0;
-    HashMap<Integer,Integer>hm=new HashMap<>();
-    hm.put(0,1);//the current sum=0 for edge cases wex:-[-1,1,0]
-    while (j < n) {
-        sum+=a[j];
-        if(hm.containsKey(sum-k))
+        HashMap<Integer,Integer>hm=new HashMap<>();
+        int sum=0;
+        int count=0;
+        hm.put(0,1);
+        for(int i=0;i<a.length;i++)
         {
-            count+=hm.get(sum-k);
+            sum+=a[i];
+            if(hm.containsKey(sum-k))
+            {
+                count+=hm.get(sum-k);
+            }
+
+                hm.put(sum,hm.getOrDefault(sum,0)+1);
+
         }
-        hm.put(sum,hm.getOrDefault(sum,0)+1);
-        j++;
-    }
-
-    return count;
-       
-
-        
-        
-        
+        return count;
     }
 }
