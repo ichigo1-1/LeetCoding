@@ -1,16 +1,21 @@
 class Solution {
-   public int check(int n) {
-    int c = 0;
-    while (n > 0) {
-        // If the rightmost bit is 1, increment the count
-        if ((n & 1) == 1) {
+    public int check(int n)
+    {
+        int c=0;
+        while(n>1)
+        {
+            if(n%2==1)
+            {
+                c++;
+            }
+            n=n>>1;
+        }
+        if(n==1)
+        {
             c++;
         }
-        // Shift n to the right by 1 bit (equivalent to dividing by 2)
-        n = n >> 1;
+        return c;
     }
-    return c;
-}
     public int minBitFlips(int start, int goal) {
         int xored=start^goal;
         //count ones
