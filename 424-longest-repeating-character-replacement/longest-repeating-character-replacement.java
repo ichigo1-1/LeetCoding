@@ -1,13 +1,13 @@
 class Solution {
     public int characterReplacement(String s, int k) {
-        int i = 0, j = 0;
-        int n = s.length();
-        int maxfreq = 0;  // To store the maximum frequency of any character in the window
-        int ans = 0;
-        HashMap<Character, Integer> hm = new HashMap<>();
-        
-        while (j < n) {
-            char cur = s.charAt(j);
+        int i=0,j=0;
+        int n=s.length();
+        int maxfreq=0;
+        int ans=0;
+        HashMap<Character,Integer>hm=new HashMap<>();
+        while(j<n)
+        {
+             char cur = s.charAt(j);
             
             // Update frequency of the current character
             hm.put(cur, hm.getOrDefault(cur, 0) + 1);
@@ -31,7 +31,6 @@ class Solution {
             
             j++;
         }
-        
         return ans;
     }
 }
