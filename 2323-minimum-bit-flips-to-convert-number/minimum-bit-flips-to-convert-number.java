@@ -1,30 +1,15 @@
 class Solution {
-    public int count(int n)
-    {
+    public int minBitFlips(int start, int goal) {
+        int xored=start^goal;
+        //count ones
         int count=0;
-        while(n>1)
+        for(int i=0;i<32;i++)
         {
-            // if(n%2==1)
-            // {
-            //     count++;
-            // }
-
-            count+=n&1;//to check odd or even agar odd toh 1 else 0
-            // n=n/2;
-            //can use right shift
-            n=n>>1;
-        }
-        if(n==1)
-        {
-            count++;
+            if(((xored&(1<<i))!=0))
+            {
+                count++;
+            }
         }
         return count;
-    }
-    public int minBitFlips(int start, int goal) {
-
-        int res=start^goal;
-        return count(res);
-
-        
     }
 }
