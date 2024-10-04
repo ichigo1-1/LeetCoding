@@ -3,19 +3,22 @@ class Solution {
         // String a = sortString(s);
         // String b=sortString(t);
         // return a.equals(b);
-        
+        if(s.length()!=t.length())
+        return false;
         Map<Character,Integer>hm=new HashMap<>();
-        //put all element count
         for(char ch:s.toCharArray())
         {
             hm.put(ch,hm.getOrDefault(ch,0)+1);
         }
-        //decrease count
+        //now decrease count
         for(char ch:t.toCharArray())
         {
-            hm.put(ch,hm.getOrDefault(ch,0)-1);
+            if(hm.containsKey(ch))
+            {
+                hm.put(ch,hm.getOrDefault(ch,0)-1);
+            }
         }
-        //last check to check wheter sb 0 hua ki nahi
+        //now check 
         for(char ch:hm.keySet())
         {
             if(hm.get(ch)!=0)
