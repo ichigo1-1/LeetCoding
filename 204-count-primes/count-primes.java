@@ -1,31 +1,24 @@
 class Solution {
     public int countPrimes(int n) {
-        if (n <= 2) return 0; // No prime numbers less than 2
-        
-        int[] arr = new int[n];
-
-        // Initialize the array assuming all numbers >= 2 are prime
-        for (int i = 2; i < n; i++) {
-            arr[i] = 1;
-        }
-
-        // Apply the Sieve of Eratosthenes
-        for (int i = 2; i< n; i++) {
-            if (arr[i] == 1) {
-                for (int j = 2 * i; j < n; j += i) {
-                    arr[j] = 0; // Mark multiples of i as non-prime
+        int[]arr=new int[n];
+        //calculate
+        for(int i=2;i<n;i++){
+            if(arr[i]==0)
+            {
+                for(int j=2*i;j<n;j+=i)
+                {
+                    arr[j]=1;//they can never be prime
                 }
             }
         }
-
-        // Count the number of primes
-        int count = 0;
-        for (int i = 2; i < n; i++) {
-            if (arr[i] == 1) {
-                count++;
+        int c=0;
+        for(int i=2;i<n;i++)
+        {
+            if(arr[i]==0)
+            {
+                c++;
             }
         }
-
-        return count;
+        return c;
     }
 }
