@@ -1,6 +1,6 @@
 class Solution {
     public double myPow(double x, int n) {
-        double ans=1.0;
+         double ans=1.0;
         double nn=n;
         if(nn<0)
         {
@@ -24,13 +24,5 @@ class Solution {
             ans=(double)1.0/(double)ans;
         }
         return ans;
-    //     if(n==0)
-    //     {
-    //         return 1;
-    //     }
-    //     double xnm1=myPow(x,n-1);
-    //     double xn=xnm1*x;
-    //     return xn;
-    // }
     }
 }
